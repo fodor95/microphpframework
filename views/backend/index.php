@@ -1,0 +1,2 @@
+<?php 
+die('NOT ALLOWED TO LIST THIS DIRECTORY');
