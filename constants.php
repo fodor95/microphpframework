@@ -57,27 +57,5 @@ define('TWIG_CACHE_FOLDER'			, 	'cache'	);
 define('KERNEL_CONTROLLER_DIRECTORY', 	'controllers'	);
 
 
-	/*
-	 * VENDOR SETTINGS - MYSQL AND PHP CLASS
-	 * 
-	 */
-
-
-define('DATABASE_NAME'		, MYSQL_DATABASE );
-define('DATABASE_USER'		, MYSQL_USERNAME );
-define('DATABASE_PASS'		, MYSQL_PASSWORD );
-define('DATABASE_HOST'		, MYSQL_HOST );
-
-
-	/*
-	 * DROPZONE SETTINGS - MYSQL AND PHP CLASS
-	 * 
-	 */
-
-define('DROPZONE_UPLOAD_FOLDER'		, 'PUBLIC_UPLOAD_FOLDER' );
-
-
-
-
 ?>
 
