@@ -1,5 +1,4 @@
 <?php 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //   __ ___  ____              _                       __                                             _     //
@@ -19,10 +18,13 @@
 /*
 	$response->setContent('This is the website home');
 	HA HIBA LEPETT FEL
-
 	$response->setStatusCode(Response::HTTP_NOT_FOUND);
 	$response->send();
 */
+
+
+define ('baseURL' , "http://" . $_SERVER['SERVER_NAME'] . '/anuntulmeu/'); 
+
 
 /*
  * INITIALIZE SYMFONY ROUTING
@@ -51,14 +53,26 @@
  */
 	require_once 'classes/kernel.php';
 	$kernel = new kernel();
+	
+
+
+
+	// $kernel -> loadController('staticPagesController');
 
 /*
  * REGISTERING THE DATABASE
  *
  */
+/*	--DEPRECATED++
 	require_once 'classes/mysqldatabase.php';
-	$db = mySqlDatabase::getInstance();
-	$mysqli = $db->getConnection(); 
+	$db = new mySqlDatabase();
+	$db->connect();
+	--DEPRECATED++
+*/
+
+	// $db->select('staticpages'); // Table name
+	// $res = $db->getResult();
+	// print_r($res);
 
 // USAGE OF THE DB CLASS
 /*
@@ -67,13 +81,36 @@
 	var_dump($result);
 */
 
+require_once 'classes/vendor/phpmysqlclassmaster/class.DBPDO.php';
+$DB = new DBPDO();
+
+// fixing the special character display problems
+$DB->execute("set names 'utf8'");
 
 /*
  * REGISTERING TWIG
  *
  */
-
 	$kernel::loadTwig();
+
+	// EXAMPLE FOR CREATING A FUNCTION
+	// creating baseURL function for generating links
+	$function = new Twig_SimpleFunction('baseURL', function ($bemenet='') {
+	    echo baseURL . 'index.php/' . $bemenet;
+	});
+	$twig->addFunction($function);
+	
+
+	$function = new Twig_SimpleFunction('baseURLnoIndex', function ($bemenet='') {
+	    echo baseURL . $bemenet;
+	});
+	$twig->addFunction($function);
+	
+
+
+	
+	// END OF EXAMPLE FOR CREATING A FUNCTION
+
 
 // USAGE
 /*
@@ -121,3 +158,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+
+
+// echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . '/index.php/contact'; 
