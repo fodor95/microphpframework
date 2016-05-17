@@ -1,6 +1,6 @@
 <?php 
 
-class Logger{
+class Logger {
 
 	private $fileName;
 	private $filePath;

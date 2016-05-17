@@ -8,6 +8,8 @@ class kernel {
 		//closes the whole website if the 
 		if(SITE_ONLINE == FALSE)
 			die(WEBSITE_OFFLINE);
+
+		
 	}
 
 
